@@ -1,75 +1,127 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Here is the README file content in a single text block for you to copy and paste:
 
-## Available Scripts
+```
+# SannuTech Construction Website
 
-In the project directory, you can run:
+Welcome to the SannuTech Construction Website project. This project is a React application designed to showcase the services, job openings, and other essential details about SannuTech Construction.
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project Overview
 
-### `npm test`
+The SannuTech Construction website provides information about the company's services, job openings, and other relevant details. The website is built using React and Bootstrap, ensuring a responsive and user-friendly interface.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Responsive design using React Bootstrap
+- Job openings with the ability to apply directly from the website
+- Statistics section displaying company achievements
+- Contact information and social media links
+- Footer with company details
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
+- React Bootstrap
+- SCSS
+- FontAwesome for icons
+- CountUp for animated statistics
+- Git for version control
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/sannutech-construction.git
+   cd sannutech-construction
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Install SCSS (if not already installed):
+   ```bash
+   npm install node-sass
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To start the development server, run:
+```bash
+npm start
+```
 
-## Learn More
+Open your browser and navigate to `http://localhost:3000` to see the website in action.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### App.js
 
-### Code Splitting
+The main entry point of the application, handling routing and rendering the navbar and footer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Navbar.js
 
-### Analyzing the Bundle Size
+A navigation bar allowing users to navigate through different sections of the website.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Footer.js
 
-### Making a Progressive Web App
+A footer component displaying company details, contact information, and social media links.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### JobOpenings.js
 
-### Advanced Configuration
+A page displaying the list of job openings available at the company.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### JobOpeningCard.js
 
-### Deployment
+A component representing a single job opening card with an option to apply.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### JobApplicationForm.js
 
-### `npm run build` fails to minify
+A form allowing users to apply for a job by providing necessary details and uploading their resume.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# Construction_website
-Construction company website using react
->>>>>>> b089a9a0a38c65589d3a7c40f6c11b6a4b21115e
+### StatisticsSection.js
+
+A section displaying company achievements using animated statistics.
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or new features.
+
+1. Fork the repository
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-branch
+   ```
+3. Make your changes
+4. Commit your changes:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+5. Push to the branch:
+   ```bash
+   git push origin feature-branch
+   ```
+6. Open a pull request
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any questions or inquiries, please contact us at [Sannutechinterio24infra@gmail.com](mailto:Sannutechinterio24infra@gmail.com).
+```
+
