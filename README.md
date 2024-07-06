@@ -1,5 +1,4 @@
 
-Here is the README file content in a single text block for you to copy and paste:
 
 ```
 # SannuTech Construction Website
