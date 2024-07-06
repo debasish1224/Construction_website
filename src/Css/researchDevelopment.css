@@ -1,0 +1,43 @@
+.research-development-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .my-5 {
+    margin-top: 80px; /* Adjust spacing as needed */
+    margin-bottom: 80px; /* Adjust spacing as needed */
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .topic-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .topic-list li {
+    margin-bottom: 30px;
+    border-left: 3px solid #ffc107; /* Blue border on the left */
+    padding-left: 15px; /* Space between bullet and text */
+  }
+  
+  .topic-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffc107; /* Blue color for titles */
+    margin-bottom: 10px;
+  }
+  
+  .topic-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Hover effect for topics */
+  .topic-list li:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+    transition: background-color 0.3s ease;
+  }
+  

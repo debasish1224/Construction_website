@@ -1,0 +1,50 @@
+.hero-section {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carousel-image {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align items to the bottom */
+    padding-bottom: 50px; /* Add some padding to the bottom */
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    bottom: 30px; /* Adjust the distance from the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+  }
+  .statistics-section {
+    background-color: #f8f9fa;
+  }
+  
+  .stat-item {
+    font-size: 2rem;
+  }
+  
+  .stat-item h2 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #ffc107;
+  }
+  
+  .stat-item p {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .stat-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }

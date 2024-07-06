@@ -1,0 +1,41 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #343a40; /* Dark background */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f8f9fa; /* Light text color */
+}
+
+.nav-link {
+  font-size: 1.1rem;
+  margin-left: 15px;
+  color: #f8f9fa !important; /* Light text color */
+}
+
+.nav-link:hover {
+  color: #ffc107 !important; /* Gold color on hover */
+}
+
+.offcanvas {
+  background-color: #343a40; /* Dark background */
+}
+
+.offcanvas-title {
+  color: #f8f9fa; /* Light text color */
+}
+
+.offcanvas-body .nav-link {
+  color: #f8f9fa !important; /* Light text color */
+}
+
+.offcanvas-body .nav-link:hover {
+  color: #ffc107 !important; /* Gold color on hover */
+}
+
+.offcanvas-header .btn-close {
+  filter: invert(1); /* Light close button */
+}
