@@ -10,6 +10,10 @@ import Navbar from './components/navbar';
 import Products from './components/products';
 import ResearchDevelopment from './components/researchDevelopment';
 import CareerPage from './components/careerPage';
+import Admin from './components/Admin';
+import { auth } from './firebase'; // Import auth from your Firebase configuration
+import UploadJob from './components/UploadJob';
+
 
 function App() {
   return (
@@ -25,8 +29,10 @@ function App() {
           <Route path="/research-development" element={<ResearchDevelopment/>} />
           <Route path="/carrerPage" element={<CareerPage/>}/>
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/upload-job" element={<UploadJob />} />
         </Routes>
-        <Footer />
+        <Footer auth={auth} />
       </div>
     </Router>
   );
