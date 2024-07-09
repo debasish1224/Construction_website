@@ -110,14 +110,32 @@ const Admin = () => {
 
     const handleToggleContacts = () => {
         setShowContacts(!showContacts);
+        setShowProducts(false)
+        setShowServices(false)
+        setViewApplications(false)
     };
 
     const handleToggleServices = () => {
         setShowServices(!showServices);
+        setShowProducts(false)
+        setShowContacts(false)
+        setViewApplications(false)
+        
     };
     const toggleProducts = () => {
         setShowProducts(!showProducts)
+        setShowServices(false)
+        setShowContacts(false)
+        setViewApplications(false)
     };
+
+    const handleViewApplication = () =>{
+        fetchApplications();
+        setViewApplications(!viewApplications)
+        setShowProducts(false)
+        setShowContacts(false)
+        setShowServices(false)
+    }
 
     if (!authenticated) {
         return null;
@@ -127,59 +145,52 @@ const Admin = () => {
         <Container className="my-5">
             <h2 className="text-center mb-4">Admin Page</h2>
             {alert && <Alert variant="danger">{alert}</Alert>}
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button
-                    variant="danger"
-                    onClick={handleLogout}
-                    className="mb-3"
-                    style={{ marginLeft: 'auto' }}
-                >
-                    Logout
-                </Button>
-            </div>
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button
-                    variant="info"
-                    onClick={() => {
-                        fetchApplications();
-                        setViewApplications(!viewApplications);
-                    }}
-                    className="mb-3"
-                    style={{ marginLeft: 'auto' }}
-                >
-                    {viewApplications ? "Hide Applications" : "View Applications"}
-                </Button>
-            </div>
-            {viewApplications && <ApplicationList applications={applications} />}
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button variant="warning" onClick={handleToggleContacts} className='mb-3'>
-                    {showContacts ? 'Hide Contact Details' : 'View Contact Details'}
-                </Button>
-            </div>
-            {showContacts && <ContactList />}
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button variant="primary" onClick={handleToggleServices} className="mb-3">
-                    {showServices ? 'Hide Services' : 'View Services'}
-                </Button>
-            </div>
-            {showServices && <ServiceList />}
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button variant='dark' onClick={toggleProducts} className="mb-3">
-                    {showProducts ? 'Hide Products' : 'Show Products'}
-                </Button>
-            </div>
-            {showProducts && <ProductList />}
-            <div style={{ width: '100%', textAlign: 'end' }}>
-                <Button
-                    variant="success"
-                    onClick={() => navigate('/upload-job')}
-                    className="mb-3"
-                    style={{ marginLeft: 'auto' }}
-                >
-                    Upload Job
-                </Button>
-            </div>
+            <Row className="mb-3">
+                
+                <Col>
+                    <Button
+                        variant="info"
+                        onClick={handleViewApplication}
+                        className="w-100"
+                    >
+                        {viewApplications ? "Hide Applications" : "View Applications"}
+                    </Button>
+                </Col>
+                <Col>
+                    <Button variant="warning" onClick={handleToggleContacts} className="w-100">
+                        {showContacts ? 'Hide Contact Details' : 'View Contact Details'}
+                    </Button>
+                </Col>
+                <Col>
+                    <Button variant="primary" onClick={handleToggleServices} className="w-100">
+                        {showServices ? 'Hide Services' : 'View Services'}
+                    </Button>
+                </Col>
+                <Col>
+                    <Button variant="dark" onClick={toggleProducts} className="w-100">
+                        {showProducts ? 'Hide Products' : 'Show Products'}
+                    </Button>
+                </Col>
+                <Col>
+                    <Button
+                        variant="success"
+                        onClick={() => navigate('/upload-job')}
+                        className="w-100"
+                    >
+                        Upload Job
+                    </Button>
+                </Col>
 
+                <Col>
+                    <Button variant="danger" onClick={handleLogout} className="w-100">
+                        Logout
+                    </Button>
+                </Col>
+            </Row>
+            {viewApplications && <ApplicationList applications={applications} />}
+            {showContacts && <ContactList />}
+            {showServices && <ServiceList />}
+            {showProducts && <ProductList />}
             <Form onSubmit={handleUpload}>
                 <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
@@ -285,6 +296,7 @@ const ApplicationList = ({ applications }) => (
         )}
     </Container>
 );
+
 export default Admin;
 
 // import React, { useState, useEffect } from 'react';
