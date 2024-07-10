@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { db, storage } from '../firebase'; // Import storage from firebase
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'; // Import necessary methods from firebase storage
 import { Container, Table, Spinner, Alert, Button, Form, Modal } from 'react-bootstrap';
 
-const ProductList = () => {
+const ProductList = ({ productListUpdated, setProductListUpdated }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editProduct, setEditProduct] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [newImage, setNewImage] = useState(null);
+  const [alert, setAlert] = useState({ show: false, message: '', variant: '' });
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,7 +31,7 @@ const ProductList = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [productListUpdated]);
 
   const handleEdit = (product) => {
     setEditProduct(product);
@@ -64,8 +65,23 @@ const ProductList = () => {
       setProducts(products.map(product => product.id === editProduct.id ? { ...editProduct, imageUrl } : product));
       setShowModal(false);
       setNewImage(null);
+      setAlert({ show: true, message: 'Product updated successfully!', variant: 'success' });
+      setProductListUpdated(true); // Trigger product list update
     } catch (error) {
       console.error("Error updating product: ", error);
+      setAlert({ show: true, message: 'Error updating product!', variant: 'danger' });
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'product', id));
+      setProducts(products.filter(product => product.id !== id));
+      setAlert({ show: true, message: 'Product deleted successfully!', variant: 'success' });
+      setProductListUpdated(true); // Trigger product list update
+    } catch (error) {
+      console.error("Error deleting product: ", error);
+      setAlert({ show: true, message: 'Error deleting product!', variant: 'danger' });
     }
   };
 
@@ -78,32 +94,36 @@ const ProductList = () => {
   }
 
   return (
-    <Container>
-      <h3>Product Details</h3>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(product => (
-            <tr key={product.id}>
-              <td>{product.title}</td>
-              <td>{product.description}</td>
-              <td>
-                <img src={product.imageUrl} alt={product.title} style={{ width: '100px', height: '100px' }} />
-              </td>
-              <td>
-                <Button variant="primary" onClick={() => handleEdit(product)}>Edit</Button>
-              </td>
+    <Container fluid>
+      <h3 className="text-center mb-4">Product Details</h3>
+      {alert.show && <Alert variant={alert.variant}>{alert.message}</Alert>}
+      <div className="table-responsive">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {products.map(product => (
+              <tr key={product.id}>
+                <td>{product.title}</td>
+                <td>{product.description}</td>
+                <td>
+                  <img src={product.imageUrl} alt={product.title} style={{ width: '100px', height: '100px' }} />
+                </td>
+                <td>
+                  <Button variant="primary" onClick={() => handleEdit(product)} className="mb-2 mr-2">Edit</Button>
+                  <Button variant="danger" onClick={() => handleDelete(product.id)} className="mb-2">Delete</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>

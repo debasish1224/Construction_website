@@ -13,6 +13,8 @@ import CareerPage from './components/careerPage';
 import Admin from './components/Admin';
 import { auth } from './firebase'; // Import auth from your Firebase configuration
 import UploadJob from './components/UploadJob';
+import UploadService from './components/UploadService';
+import UploadProduct from './components/UploadProduct';
 
 
 function App() {
@@ -31,6 +33,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/upload-job" element={<UploadJob />} />
+          <Route path="/upload-service" element={<UploadService />} />
+          <Route path="/upload-product" element={<UploadProduct />} />
         </Routes>
         <Footer auth={auth} />
       </div>

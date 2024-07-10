@@ -1,9 +1,8 @@
-// src/components/UploadJob.jsx
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { db } from '../firebase'; // Import Firestore from Firebase
 import { collection, addDoc } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
+import JobList from './JobList'; // Import JobList component
 
 const UploadJob = () => {
   const [title, setTitle] = useState('');
@@ -12,7 +11,10 @@ const UploadJob = () => {
   const [salary, setSalary] = useState('');
   const [alert, setAlert] = useState('');
   const [uploading, setUploading] = useState(false);
-  const navigate = useNavigate();
+
+
+  // State to trigger job list update
+  const [jobListUpdated, setJobListUpdated] = useState(false);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const UploadJob = () => {
       setLocation('');
       setExperience('');
       setSalary('');
+      setJobListUpdated(true); // Trigger job list update
     } catch (error) {
       console.error("Error adding document: ", error);
       setAlert('Upload failed');
@@ -94,6 +97,9 @@ const UploadJob = () => {
           )}
         </Button>
       </Form>
+
+      {/* Display JobList component below the form */}
+      <JobList jobListUpdated={jobListUpdated} setJobListUpdated={setJobListUpdated} />
     </Container>
   );
 };
