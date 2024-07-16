@@ -1,0 +1,24 @@
+.media-item {
+    height: 250px; /* Fixed height for all media items */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    background-color: #f8f9fa; /* Light background for better visual effect */
+    border-radius: 10px; /* Rounded corners for better look */
+  }
+  
+  .media-item img, .media-item video {
+    height: 100%; /* Ensures the media takes the full height */
+    width: 100%; /* Ensures the media takes the full width */
+    object-fit: fill; /* Ensures the content covers the entire area */
+    border-radius: 10px; /* Match the parent border radius */
+  }
+  
+  .card-img-top {
+    height: 250px; /* Ensures the image takes the full height */
+    width: 100%; /* Ensures the image takes the full width */
+    object-fit: fill; /* Ensures the image content covers the entire area */
+    border-radius: 10px; /* Match the parent border radius */
+  }
+  
