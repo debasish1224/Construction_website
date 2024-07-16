@@ -31,7 +31,7 @@ const CareerPage = () => {
 
   return (
     <Container className="my-5">
-      <h1 className="text-center mb-4">Job Openings</h1>
+      <h1 className="text-center mb-4">We are Hiring</h1>
 
       <Tabs defaultActiveKey="all" id="jobs-tabs" className="mb-4">
         <Tab eventKey="all" title={<span style={{ color: 'blue' }}>All Jobs</span>}>

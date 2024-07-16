@@ -27,7 +27,7 @@ const Gallery = () => {
 
     return (
         <Container className="my-5">
-            <h2 className="text-center mb-4">Gallery</h2>
+            <h2 className="text-center mb-4">SannuTech Advantage</h2>
             <Row className="g-4">
                 {mediaItems.map((item) => (
                     <Col key={item.id} xs={12} md={6} lg={4}>
