@@ -111,7 +111,7 @@ const ProductList = ({ productListUpdated, setProductListUpdated }) => {
             {products.map(product => (
               <tr key={product.id}>
                 <td>{product.title}</td>
-                <td>{product.description}</td>
+                <td>{`${product.description.substring(0, 40)}${product.description.length > 40 ? "..." : ""}`}</td>
                 <td>
                   <img src={product.imageUrl} alt={product.title} style={{ width: '100px', height: '100px' }} />
                 </td>

@@ -1,0 +1,40 @@
+.upload-research-development {
+    padding: 20px;
+  }
+  
+  .upload-research-development h2 {
+    text-align: center;
+  }
+  
+  .upload-research-development form {
+    margin-bottom: 20px;
+  }
+  
+  .upload-research-development .table {
+    margin-top: 20px;
+  }
+  
+  .upload-research-development .modal-dialog {
+    max-width: 600px;
+  }
+  
+  .upload-research-development .modal-body {
+    padding: 20px;
+  }
+  
+  .upload-research-development .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .upload-research-development .modal-footer {
+    justify-content: space-between;
+  }
+  
+  .upload-research-development .topic-image {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  

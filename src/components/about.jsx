@@ -1,11 +1,37 @@
-import React, { useRef } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React, { useRef, useEffect, useState } from 'react';
+import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import { db } from '../firebase'; // Import Firebase firestore
 import '../Css/About.css'; // Import your custom CSS for About styling
+import { collection, getDocs } from 'firebase/firestore';
 
 const About = () => {
   const sliderRef = useRef(null);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const aboutImageRef = collection(db, 'aboutImage');
+        const snapshot = await getDocs(aboutImageRef);
+
+        console.log('Snapshot:', snapshot); // Check the snapshot object in the console
+
+        const imagesData = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+        console.log('Images Data:', imagesData); // Check the mapped images data
+
+        setImages(imagesData);
+      } catch (error) {
+        console.error('Error fetching images from Firestore:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   const scrollLeft = () => {
     if (sliderRef.current) {
@@ -55,47 +81,14 @@ const About = () => {
 
       {/* Horizontal Slider Section */}
       <Container className="my-5">
-        <h2 className="text-center mb-4">Our Key Features</h2>
         <div className="slider-container position-relative">
           <div className="scrolling-wrapper d-flex" ref={sliderRef}>
             {/* Card Items */}
-            {[
-              {
-                title: "Comprehensive Service Spectrum",
-                text: "From design to execution, we provide a full range of construction services to meet all your needs.",
-                img: "images/comprehensive_service_spectrum.png"
-              },
-              {
-                title: "Unmatched Expertise",
-                text: "Our team consists of highly skilled professionals with extensive industry experience.",
-                img: "images/unmatched_expertise.png"
-              },
-              {
-                title: "Quality Assurance",
-                text: "We adhere to the highest standards of quality and safety in every project we undertake.",
-                img: "images/quality_assurance.png"
-              },
-              {
-                title: "Customized Solutions",
-                text: "Our services are tailored to meet the unique requirements of each client.",
-                img: "images/customized_solution.png"
-              },
-              {
-                title: "Sustainable Practices",
-                text: "We incorporate eco-friendly practices in our construction processes.",
-                img: "images/sustainable_practice.png"
-              },
-              {
-                title: "Reliability and Trust",
-                text: "We are committed to building long-lasting relationships based on reliability and trust.",
-                img: "images/relaiability_and_trust.png"
-              }
-            ].map((feature, index) => (
+            {images.map((image, index) => (
               <Card key={index} className="about-card m-2" style={{ minWidth: '300px' }}>
-                <Card.Img variant="top" src={feature.img} alt={feature.title} />
+                <Card.Img variant="top" src={image.imageUrl} alt={image.title} />
                 <Card.Body>
-                  <Card.Title>{feature.title}</Card.Title>
-                  <Card.Text>{feature.text}</Card.Text>
+                  <Card.Text className="text-center font-weight-bold">{image.title}</Card.Text>
                 </Card.Body>
               </Card>
             ))}

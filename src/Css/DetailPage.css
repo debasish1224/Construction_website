@@ -1,0 +1,44 @@
+/* DetailPage.css */
+
+.product-detail-card,.service-detail-card {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-image,.service-image {
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .blog-title,.service-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .product-meta {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  
+  .blog-content {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  @media (max-width: 768px) {
+    .product-image,.service-image {
+      height: 300px;
+    }
+    
+    .blog-title {
+      font-size: 2rem;
+    }
+  
+    .blog-content {
+      font-size: 1rem;
+    }
+  }

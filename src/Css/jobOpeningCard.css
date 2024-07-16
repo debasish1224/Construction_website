@@ -1,15 +1,31 @@
-.job-opening-card .card-body .job-experience,
-.job-opening-card .card-body .job-location,
-.job-opening-card .card-body .job-salary {
-  margin-bottom: 10px;
-  padding: 0%;
-}
-.job-opening-card .card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.job-opening-card {
+  margin-bottom: 20px;
 }
 
-.job-opening-card .card-body .apply-button {
-  margin-top: 10px; /* Adjust as needed */
+.job-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.job-experience,
+.job-location,
+.job-salary {
+  margin-bottom: 10px;
+}
+
+.apply-button {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-weight: bold;
+  &:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
 }

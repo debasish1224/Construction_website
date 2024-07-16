@@ -1,22 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Container, Card, Button, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import { db } from '../firebase'; // Import Firestore instance from Firebase
+import { Container, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
-import '../Css/Products.css'; // Import your custom CSS for Products styling
+import { db } from '../firebase'; // Adjust the import path as per your file structure
+import '../Css/Products.css'; // Adjust the import path as per your file structure
 
 const Products = () => {
-  const [show, setShow] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState({});
   const [products, setProducts] = useState([]);
   const sliderRef = useRef(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = (product) => {
-    setSelectedProduct(product);
-    setShow(true);
-  };
 
   const scrollLeft = () => {
     if (sliderRef.current) {
@@ -31,9 +22,14 @@ const Products = () => {
   };
 
   const fetchProducts = async () => {
-    const querySnapshot = await getDocs(collection(db, 'product'));
-    const productsArray = querySnapshot.docs.map(doc => doc.data());
-    setProducts(productsArray);
+    try {
+      const querySnapshot = await getDocs(collection(db, 'product'));
+      const productsArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProducts(productsArray);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      // Handle error state here, e.g., setProducts([]) and display an error message
+    }
   };
 
   useEffect(() => {
@@ -46,17 +42,17 @@ const Products = () => {
         <h2 className="text-center mb-4">Our Products</h2>
         <div className="slider-container position-relative">
           <div className="scrolling-wrapper d-flex" ref={sliderRef}>
-            {products.map((product, index) => (
-              <Card key={index} className="product-card m-2" style={{ minWidth: '300px' }}>
+            {products.map((product) => (
+              <Card key={product.id} className="product-card m-2">
                 <Card.Img variant="top" src={product.imageUrl} alt={product.title} />
                 <Card.Body>
                   <Card.Title className="text-center">{product.title}</Card.Title>
-                  <Card.Text>
-                    {product.description.substring(0, 100)}... {/* Adjust the number of characters to show */}
-                    <div className="text-center">
-                      <Button variant="link" onClick={() => handleShow(product)}>Click here to know more</Button>
-                    </div>
-                  </Card.Text>
+                  <Card.Text>{product.description.substring(0, 100)}...</Card.Text>
+                  <div className="text-center mt-3">
+                    <Link to={`/product/${product.id}`} className="btn btn-primary">
+                      Click here to know more
+                    </Link>
+                  </div>
                 </Card.Body>
               </Card>
             ))}
@@ -69,16 +65,6 @@ const Products = () => {
           </Button>
         </div>
       </Container>
-
-      <Modal show={show} onHide={handleClose} centered className="custom-modal">
-        <Modal.Header className="custom-modal-header">
-          <Modal.Title>{selectedProduct.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="custom-modal-body">{selectedProduct.description}</Modal.Body>
-        <Modal.Footer className="custom-modal-footer">
-          <Button variant="secondary" onClick={handleClose}>Close</Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

@@ -23,6 +23,7 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/research-development">Research</Nav.Link>
             <Nav.Link as={Link} to="/carrerPage">Career</Nav.Link>
             <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
+            
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -40,6 +41,7 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/research-development" onClick={handleClose}>Research</Nav.Link>
             <Nav.Link as={Link} to="/carrerPage" onClick={handleClose}>Career</Nav.Link>
             <Nav.Link as={Link} to="/contact" onClick={handleClose}>Contact</Nav.Link>
+            
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

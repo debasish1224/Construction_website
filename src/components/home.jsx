@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Css/Home.css'; // Import your custom CSS for Home styling
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
+import Gallery from './Gallery';
 
 const Home = () => {
   const images = [
@@ -45,7 +46,7 @@ const Home = () => {
                 <Card.Body>
                   <div className="stat-item">
                     <h2><CountUp end={200} duration={4} />+</h2>
-                    <p>Design Projects</p>
+                    <p>Design Masterpieces</p>
                   </div>
                 </Card.Body>
               </Card>
@@ -65,7 +66,7 @@ const Home = () => {
                 <Card.Body>
                   <div className="stat-item">
                     <h2><CountUp end={450} duration={4} />+</h2>
-                    <p>Satisfied Clients</p>
+                    <p>Appreciative Customers</p>
                   </div>
                 </Card.Body>
               </Card>
@@ -83,6 +84,7 @@ const Home = () => {
           </Row>
         </Container>
       </div>
+      <Gallery/>
     </div>
   );
 };

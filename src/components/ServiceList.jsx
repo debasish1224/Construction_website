@@ -117,7 +117,7 @@ const ServiceList = ({ serviceListUpdated, setServiceListUpdated }) => {
             {services.map(service => (
               <tr key={service.id}>
                 <td>{service.title}</td>
-                <td>{service.description}</td>
+                <td>{`${service.description.substring(0, 40)}${service.description.length > 40 ? "..." : ""}`}</td>
                 <td>
                   <img src={service.imageUrl} alt={service.title} style={{ width: '100px', height: '100px' }} />
                 </td>
