@@ -45,7 +45,8 @@ const Footer = ({ auth }) => {
           {/* Company Logo and Name */}
           <Col lg={3} md={6} className="mb-4 mb-md-0 text-lg-start text-md-center">
             <div className="logo">
-              <img src="favicon.ico" alt="SannuTech Construction Logo" height={50} />
+            <img src={`${process.env.PUBLIC_URL}/images/Logo.jpg`} alt="SannuTech Construction Logo" height={50} />
+
             </div>
             <p className="text-uppercase mt-3 footer-text">SannuTech Construction</p>
             <p>
