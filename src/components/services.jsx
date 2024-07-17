@@ -8,24 +8,44 @@ import '../Css/Services.css'; // Adjust import path as per your project structur
 const Services = () => {
   const sliderRef = useRef(null);
   const [services, setServices] = useState([]);
+  const [expandedServiceId, setExpandedServiceId] = useState(null);
+  const [subservices, setSubservices] = useState({});
 
-  // Fetch services from Firestore
-  const fetchServices = async () => {
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'services'));
+        const servicesArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setServices(servicesArray);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+        // Handle error state here if needed
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  const fetchSubservices = async (serviceId) => {
     try {
-      const querySnapshot = await getDocs(collection(db, 'service'));
-      const servicesArray = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setServices(servicesArray);
+      const subservicesSnapshot = await getDocs(collection(db, `services/${serviceId}/subservices`));
+      const subservicesData = subservicesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setSubservices(prevState => ({ ...prevState, [serviceId]: subservicesData }));
     } catch (error) {
-      console.error('Error fetching services:', error);
+      console.error('Error fetching subservices:', error);
       // Handle error state here if needed
     }
   };
 
-  useEffect(() => {
-    fetchServices();
-  }, []);
+  const toggleExpanded = (serviceId) => {
+    if (expandedServiceId === serviceId) {
+      setExpandedServiceId(null); // Collapse if already expanded
+    } else {
+      setExpandedServiceId(serviceId); // Expand if not expanded
+      fetchSubservices(serviceId); // Fetch subservices for the expanded service
+    }
+  };
 
-  // Scroll functions for slider
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollLeft -= 430; // Adjust scroll distance as needed
@@ -38,7 +58,6 @@ const Services = () => {
     }
   };
 
-  // Function to truncate text
   const truncateText = (text, maxLength) => {
     if (!text || text.length <= maxLength) return text;
     return text.substring(0, maxLength) + '...';
@@ -55,12 +74,45 @@ const Services = () => {
                 <Card.Img variant="top" src={service.imageUrl} alt={service.title} />
                 <Card.Body>
                   <Card.Title>{service.title}</Card.Title>
-                  <Card.Text>{truncateText(service.description, 100)}</Card.Text>
-                  <div className="text-center">
-                    <Link to={`/service/${service.id}`} className="btn btn-primary">
-                      Click here to know more
-                    </Link>
-                  </div>
+                    {expandedServiceId === service.id ? (
+                      <Button
+                        variant="success"
+                        className="mt-2 btn-sm"
+                        onClick={() => toggleExpanded(service.id)}
+                      >
+                        View Less &#11167;
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="success"
+                        className="mt-2 btn-sm"
+                        onClick={() => toggleExpanded(service.id)}
+                      >
+                        View More &#11167;
+                      </Button>
+                    )}
+                  {expandedServiceId === service.id && (
+                    <div className="mt-3">
+                      {subservices[service.id] ? (
+                        subservices[service.id].map((subservice, subIndex) => (
+                          <Card key={subIndex} className="subservice-card">
+                            <Card.Img variant="top" src={subservice.imageUrl} alt={subservice.title} />
+                            <Card.Body>
+                              <Card.Title>{subservice.title}</Card.Title>
+                              <Card.Text>{truncateText(subservice.description, 100)}</Card.Text>
+                              <div className="text-center">
+                                <Link to={`/service/${service.id}/subservice/${subservice.id}`} className="btn btn-secondary">
+                                  Click here for details
+                                </Link>
+                              </div>
+                            </Card.Body>
+                          </Card>
+                        ))
+                      ) : (
+                        <p>Loading subservices...</p>
+                      )}
+                    </div>
+                  )}
                 </Card.Body>
               </Card>
             ))}

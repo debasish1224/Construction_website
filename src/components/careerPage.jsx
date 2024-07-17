@@ -31,7 +31,7 @@ const CareerPage = () => {
 
   return (
     <Container className="my-5">
-      <h1 className="text-center mb-4">We are Hiring</h1>
+      <h1 className="text-center mb-4">We are Hiring !</h1>
 
       <Tabs defaultActiveKey="all" id="jobs-tabs" className="mb-4">
         <Tab eventKey="all" title={<span style={{ color: 'blue' }}>All Jobs</span>}>
@@ -43,7 +43,7 @@ const CareerPage = () => {
             ))}
           </Row>
         </Tab>
-        <Tab eventKey="skilled" title={<span style={{ color: 'green' }}>Skilled Jobs</span>}>
+        <Tab eventKey="skilled" title={<span style={{ color: 'green' }}>Professional Jobs</span>}>
           <Row>
             {skilledJobs.map(job => (
               <Col key={job.id} md={4} className="mb-4">
@@ -52,7 +52,7 @@ const CareerPage = () => {
             ))}
           </Row>
         </Tab>
-        <Tab eventKey="non-skilled" title={<span style={{ color: 'red' }}>Non-skilled Jobs</span>}>
+        <Tab eventKey="non-skilled" title={<span style={{ color: 'red' }}>Skilled / Non-skilled Jobs</span>}>
           <Row>
             {nonSkilledJobs.map(job => (
               <Col key={job.id} md={4} className="mb-4">
